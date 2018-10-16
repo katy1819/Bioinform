@@ -1,36 +1,39 @@
 #include <string>
-#include <cstdio>
 #include <iostream>
 
 using namespace std;
 
-int main()
+void main()
 {
-	char s[100];
-	char s1[100];
-	char s2[100];
-	string str[100], str1[100];
-	int z2[30];
-	int k1, g, j = 0, k, z, max = 1, n, h = 0, l = 0, m;
+	string s, s1, s2, str, str1;
+	int k1, g = 0, j = 0, k, z, max = 1, n, h = 0, l = 0, m, *z2, n1;
 	setlocale(LC_ALL, "Russian");
 	cout << "¬ведите строку: " << endl;
-	cin.getline(s, 100);
-	n = strlen(s);
+	getline(cin, s);
+	n = s.length();
+	z2 = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		z2[i] = 0;
+	}
 	cout << "¬ведите k - мер:" << endl;
 	cin >> k1;
-	g = 0;
-	while(g < n)
+	while (g < n)
 	{
+		s1 = "";
 		for (int j = 0; j < k1; j++)
 		{
-			s1[j] = s[g];
-			g++;
+			if (s[g] != 0)
+			{
+				s1 += s[g];
+				g++;
+			}
+			else
+				break;
 		}
-		s1[k1] = 0;
-		if (strlen(s1) != k1)
+		if (s1.length() != k1)
 			break;
 		cout << "k - mer: " << s1 << endl;
-		//puts(s1);
 		cout << endl;
 		z = 0;
 		for (int i = 0; i < n; i++)
@@ -57,48 +60,46 @@ int main()
 			}
 		}
 		cout << "„исло вхождений: " << z << endl;
-		//////////
 		if (max <= z)
 		{
-			max = z;
-			strcpy_s(s2, s1);
-			if (h == 0)
+			if (max < z)
 			{
-				z2[h] = max;
-				str[h] = s2;
+				str = "";
+				str += s1 + " ";
+				max = z;
 			}
-			////////////////////////////
 			else
 			{
-				m = 0;
-				z2[h] = max;
-				while ((str[m] != s2) && (m < h))
+				int p = 0;
+				n1 = str.length();
+				for (int i = 0; i < n1; i++)
 				{
-					m++;
+					k = 0;
+					for (int j = 0; j < k1; j++)
+					{
+						if (s1[j] == str[i])
+						{
+							k = k + 1;
+							i = i + 1;
+							if (j == k1 - 1)
+								i = i - k1;
+						}
+						else
+						{
+							i = i - k;
+							break;
+						}
+					}
+					if (k == k1)
+					{
+						p = p + 1;;
+					}
 				}
-				if (m == h)
-					str[h] = s2;
-				else
-					h--;
+				if (p == 0)
+					str += s1 + " ";
 			}
 		}
-		h++;
 		g = g - k1 + 1;
 	}
-	///////////
-	
-	for (int i = 0; i < h; i++)
-	{
-		if (z2[i] == max)
-		{
-			str1[l] = str[i];
-			l++;
-		}
-	}
-	cout << "„аще всего встретились: " << endl;
-	for (int i = 0; i < l ; i++)
-	{
-		cout << str1[i] << endl;
-	}
-		return 0;
+	cout << str << endl;
 }

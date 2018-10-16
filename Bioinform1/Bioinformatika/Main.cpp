@@ -1,22 +1,19 @@
 #include <iostream>
 #include <string>
-//#include <cstdio>
-
 
 using namespace std;
 
 void main()
 {
 	setlocale(LC_ALL, "Russian");
-	char s[100];
-	char s1[100];
+	string s, s1;
 	int n, n1, k, z = 0;
-	cout << "Введите строку: " << endl;
-	cin.getline(s,100);
-	n = strlen(s);
 	cout << "Введите подстроку: " << endl;
-	cin.getline(s1, 100);
-	n1 = strlen(s1);
+	getline(cin, s1);
+	n1 = s1.length();
+	cout << "Введите строку: " << endl;
+	getline(cin, s);
+	n = s.length();
 	for (int i = 0; i < n; i++)
 	{
 		k = 0;
@@ -42,3 +39,4 @@ void main()
 	}
 	cout << "Число вхождений: " << z << endl;
 }
+

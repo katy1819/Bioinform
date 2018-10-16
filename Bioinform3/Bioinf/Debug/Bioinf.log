@@ -1,3 +1,0 @@
-﻿  Main.cpp
-d:\биоинформатика\bioinf\bioinf\main.cpp(9): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
-  Bioinf.vcxproj -> D:\Биоинформатика\Bioinf\Debug\Bioinf.exe
